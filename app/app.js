@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngAudio']);
 
 myApp.config(function ($routeProvider) {
     
@@ -34,7 +34,10 @@ myApp.service('nameService', function() {
     
 });
 
-myApp.controller('mainController', ['$scope', '$log', 'nameService', function($scope, $log, nameService) {
+myApp.controller('mainController', ['$scope', '$log', 'nameService', 'ngAudio', function($scope, $log, nameService, ngAudio) {
+    
+
+    $scope.audio = ngAudio.load('sounds/audio.mp3');
     
     $scope.name = nameService.name;
     
@@ -58,3 +61,4 @@ myApp.controller('secondController', ['$scope', '$log', '$routeParams', 'nameSer
     });
     
 }]);
+

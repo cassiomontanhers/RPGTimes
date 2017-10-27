@@ -38,6 +38,8 @@ myApp.controller('mainController', ['$scope', '$log', 'nameService', 'ngAudio', 
     
 
     $scope.audio = ngAudio.load('sounds/audio.mp3');
+
+    $scope.audio2 = ngAudio.load('sounds/audio2.mp3');
     
     $scope.name = nameService.name;
     

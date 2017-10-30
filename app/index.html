@@ -21,17 +21,17 @@
         <script src="app.js"></script>
 
     </head>
-    <body>
+    <body ng-controller=mainController>
 
         <header>
 			<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="/">AngularJS</a>
+					<a class="navbar-brand" href="/" ng-audio-hover='sounds/audio.mp3'>AngularJSD1</a>
 				</div>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+					<li><a href="#" ng-audio-hover='sounds/audio.mp3'><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#/second"><i></i> Second</a></li>
 				</ul>
 			</div>
@@ -40,25 +40,10 @@
 
         <div class="container">
 
-            <button ng-audio="sounds/audio2.mp3" volume="1.0" start="0.2">Click me</button>
-
-            <div ng-controller='mainController'>
-                <button ng-click='audio2.paused ? audio2.play() : audio2.pause()'>{{audio2.paused ? "Play" : "Pause" }}</button>
-                <button ng-click='audio2.restart()'>Stop</button>
-                <button ng-click='audio2.muting = !audio2.muting'>{{audio2.muting ? "Unmute" : "Mute" }}</button>
-                <label>Current Time</label>
-                <input class='form-control' type=text ng-model='audio2.currentTime'>
+            <div ng-repeat='audio in audios'>
+                <a class="navbar-brand" ng-click='teste({audio})'>{{audio.id}}</a>
             </div>
 
-            <div ng-controller='mainController'>
-                <button ng-click='audio.paused ? audio.play() : audio.pause()'>{{audio.paused ? "Play" : "Pause" }}</button>
-                <button ng-click='audio.restart()'>Stop</button>
-                <button ng-click='audio.muting = !audio.muting'>{{audio.muting ? "Unmute" : "Mute" }}</button>
-                <label>Current Time</label>
-                <input class='form-control' type=text ng-model='audio.currentTime'>
-            </div>
-
-            
 		</div>
 
 

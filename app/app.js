@@ -18,7 +18,7 @@ myApp.config(function ($routeProvider) {
         templateUrl: 'pages/second.html',
         controller: 'secondController'
     })
-    
+   
 });
 
 myApp.service('nameService', function() {
@@ -35,11 +35,24 @@ myApp.service('nameService', function() {
 });
 
 myApp.controller('mainController', ['$scope', '$log', 'nameService', 'ngAudio', function($scope, $log, nameService, ngAudio) {
+
+
+    $scope.audios = [
+        ngAudio.load('sounds/audio.mp3'),
+        ngAudio.load('sounds/audio2.mp3'),
+    ];
+
     
+    $scope.teste = function(teste) {
 
-    $scope.audio = ngAudio.load('sounds/audio.mp3');
+        console.log(ngAudio);
 
-    $scope.audio2 = ngAudio.load('sounds/audio2.mp3');
+        console.log(teste);
+
+        teste.audio.play();
+
+    };
+
     
     $scope.name = nameService.name;
     
@@ -52,7 +65,7 @@ myApp.controller('mainController', ['$scope', '$log', 'nameService', 'ngAudio', 
     
 }]);
 
-myApp.controller('secondController', ['$scope', '$log', '$routeParams', 'nameService', function($scope, $log, $routeParams, nameService) {
+myApp.controller('secondController', ['$scope', '$log', '$routeParams', 'nameService', 'ngAudio', function($scope, $log, $routeParams, nameService, ngAudio) {
     
     $scope.num = $routeParams.num || 1;
     

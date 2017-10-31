@@ -7,10 +7,17 @@
         <div id="collapse{{categoria.nome}}" class="panel-collapse collapse">
             <ul class="list-group">
                 <li ng-repeat='audio in categoria.audios' class='list-group-item' 
-                ng-class="{'list-group-item-success' : !audio.audioObj.audio.paused && audio.audioObj != null, 'list-group-item-warning' : audio.audioObj === null}" ng-click='testeAudio({audio})'>
-                    <p style="display:inline;">{{audio.nome}}</p>
-                    <!--<element ng-if="expression"></element>-->
-                	<input type="checkbox" ng-model="audio.loopCheck" title="Loop" style="display:inline; float:right">
+                ng-class="{'list-group-item-success' : !audio.audioObj.audio.paused && audio.audioObj != null, 'list-group-item-warning' : audio.audioObj === null}">
+                    
+                    <div style="width: 80%; display:inline-block;" ng-click='testeAudio({audio})'>
+                        <p style="">{{audio.nome}}</p>
+                    </div>
+                    <div style="width: 10%; display:inline-block;">
+                        ||
+                        <input type="checkbox" ng-model="audio.loopCheck" title="Loop" style="">
+                        <!--<p style="display:inline; font-style: italic; font-size: 8; float: right;" ng-if="audio.audioObj === null">Tap to Load</p>-->
+                    </div>
+
             	</li>
             </ul>
     </div>

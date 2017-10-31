@@ -1,0 +1,33 @@
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" href="#collapseAudios">
+            <h4 class="panel-title">Audios</h4>
+        </div>
+        <div id="collapseAudios" class="panel-collapse collapse">
+            <ul class="list-group">
+                <li ng-repeat='audio in audios' class='list-group-item' 
+                ng-class="{'list-group-item-success' : !audio.audioObj.audio.paused}" ng-click='testeAudio({audio})'>
+                	<input type="checkbox" ng-model="audio.loopCheck" float="right" align"right">
+                	{{audio.nome}}
+            	</li>
+            </ul>
+    </div>
+</div>
+
+<hr>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" href="#collapseMusica">
+            <h4 class="panel-title">Musicas</h4>
+        </div>
+        <div id="collapseMusica" class="panel-collapse collapse">
+            <ul class="list-group">
+                <li ng-repeat='audio in musicas' class='list-group-item' 
+                ng-class="{'list-group-item-success' : !audio.audioObj.audio.paused}" ng-click='testeAudio({audio})'>
+                	<input type="checkbox" ng-model="audio.loopCheck" float="right" align"right">
+                	{{audio.nome}}
+            	</li>
+            </ul>
+    </div>
+</div>

@@ -66,6 +66,8 @@ angular.module("ngAudioDemo", ['ngAudio', 'ui.router'])
 .value("songRemember",{})
     .controller('Demo', function($scope, ngAudio) {
         
+        $scope.categorias = [];
+
 /*
         $scope.audios = [
             {audioObj:ngAudio.load('audio/button-1.mp3'),nome:'Botão 1',loopCheck:'false'},
@@ -128,10 +130,7 @@ angular.module("ngAudioDemo", ['ngAudio', 'ui.router'])
         */
 
         var musica = [
-            {audioObj:null,localizacao:'audio/music/song1.mp3',nome:'Song 1',loopCheck:'false'},
-            {audioObj:null,localizacao:'audio/music/song2.mp3',nome:'Song 2',loopCheck:'false'},
-            {audioObj:null,localizacao:'audio/music/song3.mp3',nome:'Song 3',loopCheck:'false'},
-            {audioObj:null,localizacao:'audio/music/daniel_stern_robot_hitchiker.mp3',nome:'Daniel Stern Robot Hitchiker',loopCheck:'false'},
+            
             {audioObj:null,localizacao:'audio/music/audio.mp3',nome:'Sweet Sacrifice',loopCheck:'false'},
             {audioObj:null,localizacao:'audio/music/audio2.mp3',nome:'Farther Away',loopCheck:'false'},
             {audioObj:null,localizacao:'audio/music/creepy-music-box.mp3',nome:'creepy-music-box',loopCheck:'false'},
@@ -141,10 +140,7 @@ angular.module("ngAudioDemo", ['ngAudio', 'ui.router'])
         ];
 
         var effects = [
-            {audioObj:null,localizacao:'audio/effects/button-1.mp3',nome:'Botão 1',loopCheck:'false'},
-            {audioObj:null,localizacao:'audio/effects/button-2.mp3',nome:'Botão 2',loopCheck:'false'},
-            {audioObj:null,localizacao:'audio/effects/button-3.mp3',nome:'Botão 3',loopCheck:'false'},
-            {audioObj:null,localizacao:'audio/effects/button-4.mp3',nome:'Botão 4',loopCheck:'false'},
+           
             {audioObj:null,localizacao:'audio/effects/cavalry-charge.mp3',nome:'cavalry-charge',loopCheck:'false'},
             {audioObj:null,localizacao:'audio/effects/horse-gallop.mp3',nome:'horse-gallop',loopCheck:'false'},
             {audioObj:null,localizacao:'audio/effects/medieval-battle-infantry.mp3',nome:'medieval-battle-infantry',loopCheck:'false'},
@@ -173,7 +169,9 @@ angular.module("ngAudioDemo", ['ngAudio', 'ui.router'])
         categoria3['audios'] = ambience;
         categoria3['nome'] = 'Ambience';
 
-        $scope.categorias = {categoria1, categoria2, categoria3};
+        $scope.categorias.push(categoria1);
+        $scope.categorias.push(categoria2);
+        $scope.categorias.push(categoria3);
 
 
 /*
@@ -206,5 +204,58 @@ angular.module("ngAudioDemo", ['ngAudio', 'ui.router'])
 
 
         };
+
+//=========================================================================================================================================================
+        
+        $scope.categoriasCustomizadas = $scope.categorias;
+
+        $scope.categoriaSelecionada = null;
+
+        $scope.musicasCustomizadas = [
+        {audioObj:null,localizacao:'audio/effects/cavalry-charge.mp3',nome:'cavalry-charge',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/horse-gallop.mp3',nome:'horse-gallop',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/medieval-battle-infantry.mp3',nome:'medieval-battle-infantry',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/monster-growling.mp3',nome:'monster-growling',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/scary-cave-monster.mp3',nome:'scary-cave-monster',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/sword-fight.mp3',nome:'sword-fight',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/trotting-horse.mp3',nome:'trotting-horse',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/zombie-group-roaming.mp3',nome:'zombie-group-roaming',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/ambience/medieval-war-drums.mp3',nome:'medieval-war-drums',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/ambience/metal-impact.mp3',nome:'metal-impact',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/ambience/rain.mp3',nome:'rain',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/audio.mp3',nome:'Sweet Sacrifice',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/audio2.mp3',nome:'Farther Away',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/creepy-music-box.mp3',nome:'creepy-music-box',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/dark-waltz-music.mp3',nome:'dark-waltz-music',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/horror-music.mp3',nome:'horror-music',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/horror-piano.mp3',nome:'horror-piano',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/song1.mp3',nome:'Song 1',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/song2.mp3',nome:'Song 2',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/song3.mp3',nome:'Song 3',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/music/daniel_stern_robot_hitchiker.mp3',nome:'Daniel Stern Robot Hitchiker',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/button-1.mp3',nome:'Botão 1',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/button-2.mp3',nome:'Botão 2',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/button-3.mp3',nome:'Botão 3',loopCheck:'false'},
+            {audioObj:null,localizacao:'audio/effects/button-4.mp3',nome:'Botão 4',loopCheck:'false'},
+        ];
+
+        $scope.criarCategoria = function(nome) {
+            x = [];
+            x['audios'] = [];
+            x['nome'] = nome;
+            $scope.categorias.push(x);
+        };
+
+
+        $scope.addAudioToCategoriaSelecionada = function(audio, categoria) {
+            if(categoria != null){
+                categoria.audios.push(audio);
+            }
+        };
+
+        $scope.removeAudioFromCategoriaSelecionada = function(audio, categoria) {
+            categoria.audios.splice(categoria.audios.indexOf(audio), 1);
+        };
+
 
     })

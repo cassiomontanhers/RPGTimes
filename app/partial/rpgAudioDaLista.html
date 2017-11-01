@@ -8,17 +8,30 @@
             <ul class="list-group">
                 <li ng-repeat='audio in categoria.audios' class='list-group-item' 
                 ng-class="{'list-group-item-success' : !audio.audioObj.audio.paused && audio.audioObj != null, 'list-group-item-warning' : audio.audioObj === null}">
-                    
-                    <div style="width: 80%; display:inline-block;" ng-click='testeAudio({audio})'>
-                        <p style="">{{audio.nome}}</p>
-                    </div>
-                    <div style="width: 10%; display:inline-block;">
-                        ||
-                        <input type="checkbox" ng-model="audio.loopCheck" title="Loop" style="">
-                        <!--<p style="display:inline; font-style: italic; font-size: 8; float: right;" ng-if="audio.audioObj === null">Tap to Load</p>-->
+
+                    <div style="width: 90%; display:inline-block;" ng-click='testeAudio({audio})'>
+
+                        <span ng-if="audio.audioObj === null" class="glyphicon glyphicon-download-alt" style="display:inline;"></span>
+                        <p style="display:inline-block; font-style: italic; font-size: xx-small;" ng-if="audio.audioObj === null">(Tap to Load)</p>
+
+                        <span ng-class="{'glyphicon glyphicon-stop' : !audio.audioObj.audio.paused && audio.audioObj != null,
+                                         'glyphicon glyphicon-play' : audio.audioObj.audio.paused}" style="display:inline;"></span>
+
+                        <p style="display:inline-block;">{{audio.nome}}</p>
                     </div>
 
+                    <span class="glyphicon glyphicon-option-vertical" style="display:inline;"></span>
+
+                    <input type="checkbox" ng-model="audio.loopCheck" title="Loop" style="display:inline-block;">
+                    <span class="glyphicon glyphicon-repeat" style="display:inline;"></span>
+
             	</li>
+
+                <li class='list-group-item list-group-item-danger' ng-if="categoria.audios.length === 0">
+                    <span class="glyphicon glyphicon-ban-circle" style="display:inline;"></span>
+                    <p style="display:inline-block; font-style: italic; font-size: small;">Categoria não possui audios.</p>
+                </li>
+
             </ul>
     </div>
 </div>

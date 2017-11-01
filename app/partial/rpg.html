@@ -1,33 +1,100 @@
-<div class="panel-group">
-    <div class="panel panel-default">
-        <div class="panel-heading" data-toggle="collapse" href="#collapseAudios">
-            <h4 class="panel-title">Audios</h4>
-        </div>
-        <div id="collapseAudios" class="panel-collapse collapse">
-            <ul class="list-group">
-                <li ng-repeat='audio in audios' class='list-group-item' 
-                ng-class="{'list-group-item-success' : !audio.audioObj.audio.paused}" ng-click='testeAudio({audio})'>
-                	<input type="checkbox" ng-model="audio.loopCheck" float="right" align"right">
-                	{{audio.nome}}
-            	</li>
-            </ul>
-    </div>
-</div>
+<div class="container-fluid">
+    <div class="row">
 
-<hr>
+        <div class="col-md-6 col-lg-6 col-sm-6 ">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Adicionar Categoria
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="usr">Nome:</label>
+                            <input type="text" class="form-control" id="usr" ng-model="campoNomeCriarCategoria">
+                            </br>
+                            <button type="button" class="btn btn-primary btn-block" ng-click='criarCategoria(campoNomeCriarCategoria); campoNomeCriarCategoria = null;'>Criar Categoria</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="panel-group">
-    <div class="panel panel-default">
-        <div class="panel-heading" data-toggle="collapse" href="#collapseMusica">
-            <h4 class="panel-title">Musicas</h4>
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Biblioteca Musicas
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group" style="max-height: 300px; overflow-y:scroll;">
+                            <li ng-repeat='musicaCustomizada in musicasCustomizadas' class='list-group-item'>
+                                <p style="display:inline-block;">{{musicaCustomizada.nome}}</p>
+                                 <span class="glyphicon glyphicon-transfer" style="display:inline; float:right" ng-click='addAudioToCategoriaSelecionada(musicaCustomizada, categoriaSelecionada)'></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div id="collapseMusica" class="panel-collapse collapse">
-            <ul class="list-group">
-                <li ng-repeat='audio in musicas' class='list-group-item' 
-                ng-class="{'list-group-item-success' : !audio.audioObj.audio.paused}" ng-click='testeAudio({audio})'>
-                	<input type="checkbox" ng-model="audio.loopCheck" float="right" align"right">
-                	{{audio.nome}}
-            	</li>
-            </ul>
+
+
+        <div class="col-md-1 col-lg-1 col-sm-1">
+        </div>
+
+
+        <div class="col-md-5 col-lg-5 col-sm-5">
+
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Categorias
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="sel1">Categorias Cadastradas</label>
+                            <select class="form-control" id="sel1" ng-model="categoriaSelecionada"
+                                ng-options="categoria as categoria.nome for categoria in categoriasCustomizadas">  
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel-group" ng-if='categoriaSelecionada != null'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="display:inline;">{{categoriaSelecionada.nome}}</h4>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li ng-repeat='audio in categoriaSelecionada.audios' class='list-group-item'>
+                                    <p style="display:inline-block;">{{audio.nome}}</p>
+                                    <span class="glyphicon glyphicon-transfer" style="display:inline; float:right" ng-click='removeAudioFromCategoriaSelecionada(audio, categoriaSelecionada)'></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+<!--
+            <div class="panel-group" ng-repeat='categoria in categoriasCustomizadas'>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" href="#collapse{{categoria.nome}}">
+                        <h4 class="panel-title" style="display:inline;">{{categoria.nome}}</h4>
+                        <span class="glyphicon glyphicon-menu-down" style="display:inline; float:right"></span>
+                    </div>
+                    <div id="collapse{{categoria.nome}}" class="panel-collapse collapse">
+                        <ul class="list-group">
+                            <li ng-repeat='audio in categoria.audios' class='list-group-item'>
+                                <p style="display:inline-block;">{{audio.nome}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+-->
+
+
+        </div>
     </div>
 </div>

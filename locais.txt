@@ -1,0 +1,3 @@
+https://github.com/cassiomontanhers/RPGTimes.git
+
+https://github.com/danielstern/ngAudio
